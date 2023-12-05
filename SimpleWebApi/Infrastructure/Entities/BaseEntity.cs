@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using Microsoft.EntityFrameworkCore;
 
-namespace SimpleWebApi.Infrastructure.Entitys;
+namespace SimpleWebApi.Infrastructure.Entities;
 
 public class BaseEntity
 {
