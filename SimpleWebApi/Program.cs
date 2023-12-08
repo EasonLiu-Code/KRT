@@ -1,4 +1,6 @@
 using Microsoft.EntityFrameworkCore;
+using SimpleWebApi.Application.AppService;
+using SimpleWebApi.Application.IAppService;
 using SimpleWebApi.Infrastructure;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -14,6 +16,8 @@ builder.Services.AddDbContext<DataDbContext>(options =>
     var connectionString = builder.Configuration.GetConnectionString("mysqldb");
     options.UseMySql(connectionString, ServerVersion.AutoDetect(connectionString));
 });
+builder.Services.AddScoped<IBaseAppService, BaseAppService>();
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
