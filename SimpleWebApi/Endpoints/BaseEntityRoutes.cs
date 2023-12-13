@@ -9,6 +9,6 @@ public class BaseEntityRoutes:ICarterModule
 {
     public void AddRoutes(IEndpointRouteBuilder app)
     {
-        app.MapGet("test", () => Task.FromResult(Results.Ok()));
+        app.MapGet("Test", () => Task.FromResult(Results.Ok("okay")));
     }
 }

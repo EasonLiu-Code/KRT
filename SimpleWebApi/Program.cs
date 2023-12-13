@@ -1,3 +1,4 @@
+using Carter;
 using Microsoft.EntityFrameworkCore;
 using SimpleWebApi.Application.AppService;
 using SimpleWebApi.Application.IAppService;
@@ -18,6 +19,9 @@ builder.Services.AddDbContext<DataDbContext>(options =>
 });
 builder.Services.AddScoped<IBaseAppService, BaseAppService>();
 
+// 👇 Add the required Carter services
+builder.Services.AddCarter();
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -32,5 +36,6 @@ app.UseHttpsRedirection();
 app.UseAuthorization();
 
 app.MapControllers();
-
+// 👇 find all the Carter modules and register all the APIs
+app.MapCarter();
 app.Run();
