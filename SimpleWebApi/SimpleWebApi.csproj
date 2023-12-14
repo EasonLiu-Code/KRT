@@ -19,7 +19,19 @@
     </ItemGroup>
 
     <ItemGroup>
-      <Folder Include="Infrastructure\Dtos\" />
+      <Compile Remove="Infrastructure\Dtos\**" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <EmbeddedResource Remove="Infrastructure\Dtos\**" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <Content Remove="Infrastructure\Dtos\**" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <None Remove="Infrastructure\Dtos\**" />
     </ItemGroup>
 
 </Project>
