@@ -1,4 +1,7 @@
-﻿namespace SimpleWebApi.Infrastructure;
+﻿using SimpleWebApi.Domain;
+using SimpleWebApi.Infrastructure.Repositories;
+
+namespace SimpleWebApi.Infrastructure;
 
 public static class DependencyInjection
 {
@@ -9,7 +12,7 @@ public static class DependencyInjection
     /// <returns></returns>
     public static IServiceCollection AddApplication(this IServiceCollection services)
     {
-        //services.AddScoped<ITest,Test>();
+        //services.AddScoped<IBaseRepository, BaseRepository>();
         return services;
     }
     
