@@ -2,6 +2,5 @@
 
 public interface IBaseRepository
 {
-    //example
-    //Task<TEntity> GetByIdAsync(string TEntityId);
+    Task<bool> IsUniqueAsync(string mustUnique, CancellationToken cancellationToken = default);
 }

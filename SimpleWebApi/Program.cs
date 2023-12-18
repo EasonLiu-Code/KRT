@@ -18,7 +18,6 @@ builder.Services.AddDbContext<DataDbContext>(options =>
     options.UseMySql(connectionString, ServerVersion.AutoDetect(connectionString));
 });
 
-//依赖注册 依赖注入 ioc容器 控制反转
 builder.Services.AddScoped<IBaseAppService, BaseAppService>();
 
 // 👇 Add the required Carter services

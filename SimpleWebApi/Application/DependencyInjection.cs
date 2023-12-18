@@ -1,7 +1,4 @@
-﻿using SimpleWebApi.Domain;
-using SimpleWebApi.Infrastructure.Repositories;
-
-namespace SimpleWebApi.Infrastructure;
+﻿namespace SimpleWebApi.Application;
 
 public static class DependencyInjection
 {
@@ -14,5 +11,4 @@ public static class DependencyInjection
     {
         return services;
     }
-    
 }

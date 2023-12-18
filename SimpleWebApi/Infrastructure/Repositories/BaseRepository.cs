@@ -12,12 +12,15 @@ internal sealed class BaseRepository:IBaseRepository
     {
         _context = context;
     }
-    
-    //----------example-----------
-    // public Task<TEntity> GetByIdAsync(string TEntityid)
-    // {
-    //     return _context.TEntity
-    //         .SingleOrDefaultAsync(c => c.Id == id);
-    // }
-    
+    /// <summary>
+    /// 唯一性验证
+    /// </summary>
+    /// <param name="mustUnique"></param>
+    /// <param name="cancellationToken"></param>
+    /// <returns></returns>
+    /// <exception cref="NotImplementedException"></exception>
+    public Task<bool> IsUniqueAsync(string mustUnique, CancellationToken cancellationToken = default)
+    {
+        return Task.FromResult(true);
+    }
 }
