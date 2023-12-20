@@ -1,4 +1,5 @@
-﻿using SimpleWebApi.Domain.IRepository;
+﻿using Microsoft.EntityFrameworkCore;
+using SimpleWebApi.Domain.IRepository;
 using SimpleWebApi.Infrastructure.Entities.Test;
 
 namespace SimpleWebApi.Infrastructure.Repositories;
@@ -12,6 +13,12 @@ public class TestDbRepository:ITestDbRepository
         _dbContext = dbContext;
     }
 
+    public async Task<bool> UpdateAsync(TestDb testDb)
+    {
+         _dbContext.TestDb.Update(testDb);
+         return true;
+    }
+
     /// <summary>
     /// 
     /// </summary>
@@ -19,7 +26,7 @@ public class TestDbRepository:ITestDbRepository
     /// <returns></returns>
     public async Task<bool> InsertAsync(TestDb testDb)
     {
-        await _dbContext.AddAsync(testDb);
+        await _dbContext.TestDb.AddAsync(testDb);
         
         return true;
     }
