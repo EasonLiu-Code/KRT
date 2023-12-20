@@ -25,7 +25,9 @@ namespace SimpleWebApi.Migrations
                         .HasColumnType("int");
 
                     b.Property<bool>("IsDeleted")
+                        .ValueGeneratedOnAdd()
                         .HasColumnType("tinyint(1)")
+                        .HasDefaultValue(false)
                         .HasComment("是否删除");
 
                     b.Property<string>("TestDate")

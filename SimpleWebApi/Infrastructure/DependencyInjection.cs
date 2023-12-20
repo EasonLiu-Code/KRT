@@ -1,4 +1,5 @@
 ﻿using SimpleWebApi.Domain;
+using SimpleWebApi.Domain.IRepository;
 using SimpleWebApi.Infrastructure.Repositories;
 
 namespace SimpleWebApi.Infrastructure;

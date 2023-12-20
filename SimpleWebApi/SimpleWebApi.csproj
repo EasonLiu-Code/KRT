@@ -22,21 +22,29 @@
     <ItemGroup>
       <Compile Remove="Infrastructure\Dtos\**" />
       <Compile Remove="Infrastructure\KoriteMigrations\**" />
+      <Compile Remove="Infrastructure\Repositories\TestDbRepository\**" />
+      <Compile Remove="Domain\IRepository\ITestDbRepository\**" />
     </ItemGroup>
 
     <ItemGroup>
       <EmbeddedResource Remove="Infrastructure\Dtos\**" />
       <EmbeddedResource Remove="Infrastructure\KoriteMigrations\**" />
+      <EmbeddedResource Remove="Infrastructure\Repositories\TestDbRepository\**" />
+      <EmbeddedResource Remove="Domain\IRepository\ITestDbRepository\**" />
     </ItemGroup>
 
     <ItemGroup>
       <Content Remove="Infrastructure\Dtos\**" />
       <Content Remove="Infrastructure\KoriteMigrations\**" />
+      <Content Remove="Infrastructure\Repositories\TestDbRepository\**" />
+      <Content Remove="Domain\IRepository\ITestDbRepository\**" />
     </ItemGroup>
 
     <ItemGroup>
       <None Remove="Infrastructure\Dtos\**" />
       <None Remove="Infrastructure\KoriteMigrations\**" />
+      <None Remove="Infrastructure\Repositories\TestDbRepository\**" />
+      <None Remove="Domain\IRepository\ITestDbRepository\**" />
     </ItemGroup>
 
 </Project>

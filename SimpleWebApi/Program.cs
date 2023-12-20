@@ -2,7 +2,9 @@ using Carter;
 using Microsoft.EntityFrameworkCore;
 using SimpleWebApi.Application.AppService;
 using SimpleWebApi.Application.IAppService;
+using SimpleWebApi.Domain.IRepository;
 using SimpleWebApi.Infrastructure;
+using SimpleWebApi.Infrastructure.Repositories;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -18,7 +20,8 @@ builder.Services.AddDbContext<DataDbContext>(options =>
     options.UseMySql(connectionString, ServerVersion.AutoDetect(connectionString));
 });
 
-builder.Services.AddScoped<IBaseAppService, BaseAppService>();
+builder.Services.AddScoped<ITestDbAppService, TestDbAppService>();
+builder.Services.AddScoped<ITestDbRepository, TestDbRepository>();
 
 // 👇 Add the required Carter services
 builder.Services.AddCarter();

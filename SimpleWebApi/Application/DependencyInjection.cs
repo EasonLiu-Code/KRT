@@ -1,4 +1,7 @@
-﻿namespace SimpleWebApi.Application;
+﻿using SimpleWebApi.Application.AppService;
+using SimpleWebApi.Application.IAppService;
+
+namespace SimpleWebApi.Application;
 
 public static class DependencyInjection
 {
@@ -9,6 +12,7 @@ public static class DependencyInjection
     /// <returns></returns>
     public static IServiceCollection AddApplication(this IServiceCollection services)
     {
+        
         return services;
     }
 }
