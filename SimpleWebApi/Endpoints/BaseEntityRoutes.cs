@@ -3,10 +3,7 @@ using Newtonsoft.Json;
 using SimpleWebApi.Infrastructure.Entities.Test;
 
 namespace SimpleWebApi.Endpoints;
-/// <summary>
-/// fast mini api
-/// it can be replace for controller
-/// </summary>
+/// <summary> </summary>
 public class BaseEntityRoutes:ICarterModule
 {
     public void AddRoutes(IEndpointRouteBuilder app)
