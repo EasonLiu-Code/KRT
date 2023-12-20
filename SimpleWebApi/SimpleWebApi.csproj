@@ -21,18 +21,22 @@
 
     <ItemGroup>
       <Compile Remove="Infrastructure\Dtos\**" />
+      <Compile Remove="Infrastructure\KoriteMigrations\**" />
     </ItemGroup>
 
     <ItemGroup>
       <EmbeddedResource Remove="Infrastructure\Dtos\**" />
+      <EmbeddedResource Remove="Infrastructure\KoriteMigrations\**" />
     </ItemGroup>
 
     <ItemGroup>
       <Content Remove="Infrastructure\Dtos\**" />
+      <Content Remove="Infrastructure\KoriteMigrations\**" />
     </ItemGroup>
 
     <ItemGroup>
       <None Remove="Infrastructure\Dtos\**" />
+      <None Remove="Infrastructure\KoriteMigrations\**" />
     </ItemGroup>
 
 </Project>

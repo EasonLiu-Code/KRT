@@ -1,4 +1,5 @@
 using Microsoft.EntityFrameworkCore;
+using SimpleWebApi.Infrastructure.Entities.Test;
 
 namespace SimpleWebApi.Infrastructure;
 
@@ -9,5 +10,5 @@ public class DataDbContext:DbContext
         
     }
 
-    //public DbSet<T> T { get; set; }
+    public DbSet<TestDb> TestDb { get; set; }
 }
