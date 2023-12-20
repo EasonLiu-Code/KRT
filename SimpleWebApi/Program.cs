@@ -20,8 +20,13 @@ builder.Services.AddDbContext<DataDbContext>(options =>
     options.UseMySql(connectionString, ServerVersion.AutoDetect(connectionString));
 });
 
+#region DenpendencyInjection
+
 builder.Services.AddScoped<ITestDbAppService, TestDbAppService>();
 builder.Services.AddScoped<ITestDbRepository, TestDbRepository>();
+
+#endregion
+
 
 // 👇 Add the required Carter services
 builder.Services.AddCarter();
