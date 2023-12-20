@@ -11,6 +11,10 @@ public class DataDbContext:DbContext
         
     }
     
+    /// <summary>
+    /// 添加表的属性等
+    /// </summary>
+    /// <param name="modelBuilder"></param>
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         modelBuilder.Entity<TestDb>()
