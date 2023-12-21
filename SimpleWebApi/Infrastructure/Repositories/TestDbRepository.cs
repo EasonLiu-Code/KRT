@@ -13,10 +13,38 @@ public class TestDbRepository:ITestDbRepository
         _dbContext = dbContext;
     }
 
-    public async Task<bool> UpdateAsync(TestDb testDb)
+
+    /// <summary>
+    /// 根据条件获取
+    /// </summary>
+    /// <param name="id"></param>
+    /// <returns></returns>
+    public async Task<TestDb> FirstOrDefaultAsync(int id)
     {
-         _dbContext.TestDb.Update(testDb);
-         return true;
+        var res= await _dbContext.TestDb.FirstOrDefaultAsync(i => i.Id.Equals(id)&&!i.IsDeleted);
+        if (res is null)
+        {
+            return new TestDb();
+        }
+        return res;
+    }
+
+    /// <summary>
+    /// 根据某个条件批量获取
+    /// </summary>
+    /// <param name="url"></param>
+    /// <returns></returns>
+    public async Task<List<TestDb>> GetListAsync(string url)
+    {
+       var res= await _dbContext.TestDb.Where(u => u.Url != null 
+                                                   && u.Url.Equals(url) 
+                                                   && !u.IsDeleted).ToListAsync();
+       if (res is not {Count:>0} )
+       {
+           return new List<TestDb>();
+       }
+
+       return res;
     }
 
     /// <summary>

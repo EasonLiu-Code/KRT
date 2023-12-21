@@ -20,4 +20,10 @@ public class TestDbController:ControllerBase
     {
         return await _testDbAppService.TestInsertData(testDb);
     }
+
+    [HttpGet]
+    public async Task<TestDb> GetTestDbById(int id)
+    {
+        return await _testDbAppService.GetTestDbInfoById(id);
+    }
 }

@@ -13,6 +13,11 @@ public class TestDbAppService:ITestDbAppService
         _testDbRepository = testDbRepository;
     }
 
+    /// <summary>
+    /// 增
+    /// </summary>
+    /// <param name="testDb"></param>
+    /// <returns></returns>
     public async Task<bool> TestInsertData(TestDbDto testDb)
     {
         await _testDbRepository.InsertAsync(new TestDb
@@ -23,5 +28,15 @@ public class TestDbAppService:ITestDbAppService
         });
         await _testDbRepository.SaveChange();
         return true;
+    }
+
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <param name="id"></param>
+    /// <returns></returns>
+    public async Task<TestDb> GetTestDbInfoById(int id)
+    {
+        return await _testDbRepository.FirstOrDefaultAsync(id);
     }
 }
