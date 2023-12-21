@@ -31,12 +31,20 @@ public class TestDbAppService:ITestDbAppService
     }
 
     /// <summary>
-    /// 
+    /// 查询
     /// </summary>
     /// <param name="id"></param>
     /// <returns></returns>
     public async Task<TestDb> GetTestDbInfoById(int id)
     {
         return await _testDbRepository.FirstOrDefaultAsync(id);
+    }
+
+    public async Task<bool> UpdateUrl(string url, int id)
+    {
+        var info = await _testDbRepository.FirstOrDefaultAsync(id);
+        info.Url = url;
+        await _testDbRepository.SaveChange();
+        return true;
     }
 }

@@ -26,4 +26,10 @@ public class TestDbController:ControllerBase
     {
         return await _testDbAppService.GetTestDbInfoById(id);
     }
+
+    [HttpPost]
+    public async Task<bool> UpdateUrlAsync(string url, int id)
+    {
+        return await _testDbAppService.UpdateUrl(url, id);
+    }
 }
