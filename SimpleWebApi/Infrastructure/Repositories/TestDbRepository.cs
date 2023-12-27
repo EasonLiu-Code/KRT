@@ -39,11 +39,7 @@ public class TestDbRepository:ITestDbRepository
        var res= await _dbContext.TestDb.Where(u => u.Url != null 
                                                    && u.Url.Equals(url) 
                                                    && !u.IsDeleted).ToListAsync();
-       if (res is not {Count:>0} )
-       {
-           return new List<TestDb>();
-       }
-       return res;
+       return res is not {Count:>0} ? new List<TestDb>() : res;
     }
 
     /// <summary>
@@ -57,8 +53,15 @@ public class TestDbRepository:ITestDbRepository
         await _dbContext.SaveChangesAsync();
         return true;
     }
-    
-    
+
+    public async Task<bool> InsertManyAsync(List<TestDb> lstTestDb)
+    {
+        await _dbContext.TestDb.AddRangeAsync(lstTestDb);
+        await SaveChange();
+        return true;
+    }
+
+
     /// <summary>
     /// 保存跟踪结果
     /// </summary>
