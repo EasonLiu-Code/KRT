@@ -1,5 +1,6 @@
 using Carter;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.OpenApi.Models;
 using SimpleWebApi.Application.AppService;
 using SimpleWebApi.Application.IAppService;
 using SimpleWebApi.Domain.IRepository;
@@ -19,6 +20,8 @@ builder.Services.AddDbContext<DataDbContext>(options =>
     var connectionString = builder.Configuration.GetConnectionString("mysqldb");
     options.UseMySql(connectionString, ServerVersion.AutoDetect(connectionString));
 });
+//MemoryCache
+builder.Services.AddMemoryCache();
 
 #region DenpendencyInjection
 

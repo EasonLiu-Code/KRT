@@ -43,24 +43,24 @@ public class TestDbRepository:ITestDbRepository
        {
            return new List<TestDb>();
        }
-
        return res;
     }
 
     /// <summary>
-    /// 
+    /// 插入单条数据
     /// </summary>
     /// <param name="testDb"></param>
     /// <returns></returns>
     public async Task<bool> InsertAsync(TestDb testDb)
     {
         await _dbContext.TestDb.AddAsync(testDb);
-        
+        await _dbContext.SaveChangesAsync();
         return true;
     }
-
+    
+    
     /// <summary>
-    /// 
+    /// 保存跟踪结果
     /// </summary>
     public async Task SaveChange()
     {
