@@ -12,8 +12,7 @@ public class TestDbRepository:ITestDbRepository
     {
         _dbContext = dbContext;
     }
-
-
+    
     /// <summary>
     /// 根据条件获取
     /// </summary>
@@ -53,11 +52,30 @@ public class TestDbRepository:ITestDbRepository
         await _dbContext.SaveChangesAsync();
         return true;
     }
-
+    
+    /// <summary>
+    /// 批量插入数据
+    /// </summary>
+    /// <param name="lstTestDb"></param>
+    /// <returns></returns>
     public async Task<bool> InsertManyAsync(List<TestDb> lstTestDb)
     {
         await _dbContext.TestDb.AddRangeAsync(lstTestDb);
         await SaveChange();
+        return true;
+    }
+
+    /// <summary>
+    /// 批量更新
+    /// </summary>
+    /// <param name="url"></param>
+    /// <param name="data"></param>
+    /// <returns></returns>
+    public async Task<bool> UpdateManyAsync(string url,string data)
+    {
+        await _dbContext.TestDb
+            .Where(a=>a.Url != null && a.Url.Equals(url))
+            .ExecuteUpdateAsync(a => a.SetProperty(u => u.TestDate ,data));
         return true;
     }
 

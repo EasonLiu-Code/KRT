@@ -28,14 +28,12 @@ public class TestDbAppService:ITestDbAppService
     /// <returns></returns>
     public async Task<bool> TestInsertData(TestDbDto testDb)
     {
-        for (int i = 0; i < 100; i++)
+        await _testDbRepository.InsertAsync(new TestDb
         {
-            await _testDbRepository.InsertAsync(new TestDb
-            {
-                Url = testDb.Url,
-                TestDate = testDb.Data,
-            });
-        }
+            Url = testDb.Url,
+            TestDate = testDb.Data,
+        });
+
         return true;
     }
 
@@ -47,6 +45,38 @@ public class TestDbAppService:ITestDbAppService
     public async Task<TestDb> GetTestDbInfoById(int id)
     {
         return await _testDbRepository.FirstOrDefaultAsync(id);
+    }
+
+    /// <summary>
+    /// 批量插入Demo
+    /// </summary>
+    /// <param name="dto"></param>
+    /// <returns></returns>
+    public async Task<bool> InsertManyAsync(TestDbDto dto)
+    {
+        var lstTestDb = new List<TestDb>();
+        for (int i = 0; i < 10000; i++)
+        {
+            lstTestDb.Add(new TestDb
+            {
+                Url = dto.Url,
+                TestDate = dto.Data
+            });
+        }
+        await _testDbRepository.InsertManyAsync(lstTestDb);
+        return true;
+    }
+
+    /// <summary>
+    /// 批量更新
+    /// </summary>
+    /// <param name="url"></param>
+    /// <param name="data"></param>
+    /// <returns></returns>
+    public async Task<bool> UpdateManyAsync(string url,string data)
+    {
+        await _testDbRepository.UpdateManyAsync(url,data);
+        return true;
     }
 
     /// <summary>

@@ -60,4 +60,27 @@ public class TestDbController:ControllerBase
     {
         return await _testDbAppService.GetListInfoAsync(url);
     }
+
+    /// <summary>
+    /// 批量插入
+    /// </summary>
+    /// <param name="dto"></param>
+    /// <returns></returns>
+    [HttpPost]
+    public async Task<bool> InsertManyAsync(TestDbDto dto)
+    {
+        return await _testDbAppService.InsertManyAsync(dto);
+    }
+
+    /// <summary>
+    /// 批量更新
+    /// </summary>
+    /// <param name="url"></param>
+    /// <param name="data"></param>
+    /// <returns></returns>
+    [HttpPost]
+    public async Task<bool> UpdateManyAsync(string url, string data)
+    {
+        return await _testDbAppService.UpdateManyAsync(url, data);
+    }
 }
