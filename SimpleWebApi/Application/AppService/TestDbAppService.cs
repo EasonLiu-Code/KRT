@@ -5,6 +5,9 @@ using SimpleWebApi.Infrastructure.Entities.Test;
 
 namespace SimpleWebApi.Application.AppService;
 
+/// <summary>
+/// demo样例
+/// </summary>
 public class TestDbAppService:ITestDbAppService
 {
     private readonly ITestDbRepository _testDbRepository;
@@ -55,7 +58,7 @@ public class TestDbAppService:ITestDbAppService
     public async Task<bool> InsertManyAsync(TestDbDto dto)
     {
         var lstTestDb = new List<TestDb>();
-        for (int i = 0; i < 10000; i++)
+        for (var i = 0; i < 10000; i++)
         {
             lstTestDb.Add(new TestDb
             {

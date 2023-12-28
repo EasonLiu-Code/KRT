@@ -2,6 +2,9 @@
 
 namespace SimpleWebApi.Application.IAppService;
 
+/// <summary>
+/// interface
+/// </summary>
 public interface ITestDbAppService
 {
     /// <summary>

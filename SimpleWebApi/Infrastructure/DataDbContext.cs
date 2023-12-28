@@ -4,8 +4,15 @@ using SimpleWebApi.Infrastructure.Entities.Test;
 
 namespace SimpleWebApi.Infrastructure;
 
+/// <summary>
+/// context
+/// </summary>
 public class DataDbContext:DbContext
 {
+    /// <summary>
+    /// ctor
+    /// </summary>
+    /// <param name="option"></param>
     public DataDbContext(DbContextOptions<DataDbContext>option):base(option)
     {
         
@@ -24,5 +31,8 @@ public class DataDbContext:DbContext
     }
     
 
+    /// <summary>
+    /// 
+    /// </summary>
     public DbSet<TestDb> TestDb { get; set; }
 }

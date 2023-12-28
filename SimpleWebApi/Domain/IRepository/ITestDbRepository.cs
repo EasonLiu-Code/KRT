@@ -2,6 +2,9 @@
 
 namespace SimpleWebApi.Domain.IRepository;
 
+/// <summary>
+/// 
+/// </summary>
 public interface ITestDbRepository
 {
     /// <summary>

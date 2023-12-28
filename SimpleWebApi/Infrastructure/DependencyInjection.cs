@@ -4,6 +4,9 @@ using SimpleWebApi.Infrastructure.Repositories;
 
 namespace SimpleWebApi.Infrastructure;
 
+/// <summary>
+/// DI
+/// </summary>
 public static class DependencyInjection
 {
     /// <summary>

@@ -4,10 +4,17 @@ using SimpleWebApi.Infrastructure.Entities.Test;
 
 namespace SimpleWebApi.Infrastructure.Repositories;
 
+/// <summary>
+/// repo
+/// </summary>
 public class TestDbRepository:ITestDbRepository
 {
     private readonly DataDbContext _dbContext;
 
+    /// <summary>
+    /// ctor
+    /// </summary>
+    /// <param name="dbContext"></param>
     public TestDbRepository(DataDbContext dbContext)
     {
         _dbContext = dbContext;
