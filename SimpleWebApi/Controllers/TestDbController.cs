@@ -5,12 +5,19 @@ using SimpleWebApi.Infrastructure.Entities.Test;
 
 namespace SimpleWebApi.Controllers;
 
+/// <summary>
+/// 数据测试
+/// </summary>
 [ApiController]
 [Route("api/[controller]/[action]")]
 public class TestDbController:ControllerBase
 {
     private readonly ITestDbAppService _testDbAppService;
 
+    /// <summary>
+    /// ctor
+    /// </summary>
+    /// <param name="testDbAppService"></param>
     public TestDbController(ITestDbAppService testDbAppService)
     {
         _testDbAppService = testDbAppService;
