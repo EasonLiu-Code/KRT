@@ -24,7 +24,7 @@ public class TestDbController:ControllerBase
     }
 
     /// <summary>
-    /// 插入数据Demo
+    /// 单体插入
     /// </summary>
     /// <param name="testDb"></param>
     /// <returns></returns>
@@ -35,7 +35,7 @@ public class TestDbController:ControllerBase
     }
 
     /// <summary>
-    /// 获取数据Demo
+    /// 单体查询
     /// </summary>
     /// <param name="id"></param>
     /// <returns></returns>
@@ -46,7 +46,7 @@ public class TestDbController:ControllerBase
     }
 
     /// <summary>
-    /// 更新数据Demo
+    /// 单体更新
     /// </summary>
     /// <param name="url"></param>
     /// <param name="id"></param>
@@ -58,7 +58,7 @@ public class TestDbController:ControllerBase
     }
 
     /// <summary>
-    /// 条件查询Demo，返回多条
+    /// 批量查询
     /// </summary>
     /// <param name="url"></param>
     /// <returns></returns>
@@ -90,4 +90,17 @@ public class TestDbController:ControllerBase
     {
         return await _testDbAppService.UpdateManyAsync(url, data);
     }
+    
+    /// <summary>
+    /// EF7.0之前批量更新
+    /// </summary>
+    /// <param name="url"></param>
+    /// <param name="data"></param>
+    /// <returns></returns>
+    [HttpPost]
+    public async Task<bool> TestOldUpdateManyAsync(string url, string data)
+    {
+        return await _testDbAppService.TestOldUpdateManyAsync(url, data);
+    }
+
 }

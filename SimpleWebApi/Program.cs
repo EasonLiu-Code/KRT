@@ -20,7 +20,6 @@ builder.Services.AddSwaggerGen(c =>
     var file = Path.Combine(AppContext.BaseDirectory, "SimpleWebApi.xml");
     var path = Path.Combine(AppContext.BaseDirectory, file);
     c.IncludeXmlComments(path ,true);
-    c.OrderActionsBy(o=>o.RelativePath);
 });
 builder.Services.AddDbContext<DataDbContext>(options =>
 {

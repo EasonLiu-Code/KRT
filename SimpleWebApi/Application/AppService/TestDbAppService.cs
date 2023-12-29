@@ -83,6 +83,20 @@ public class TestDbAppService:ITestDbAppService
     }
 
     /// <summary>
+    /// 旧方法批量更新
+    /// </summary>
+    /// <param name="url"></param>
+    /// <param name="data"></param>
+    /// <returns></returns>
+    public async Task<bool> TestOldUpdateManyAsync(string url, string data)
+    {
+        var infos = await _testDbRepository.GetListAsync(url);
+        infos.ForEach(a=>a.TestDate=data);
+        await _testDbRepository.SaveChange();
+        return true;
+    }
+
+    /// <summary>
     /// 条件查询Demo 返回多条(内存缓存)
     /// </summary>
     /// <returns></returns>

@@ -35,6 +35,14 @@ public interface ITestDbAppService
     /// <param name="data"></param>
     /// <returns></returns>
     Task<bool> UpdateManyAsync(string url, string data);
+
+    /// <summary>
+    /// EF7.0之前的更新
+    /// </summary>
+    /// <param name="url"></param>
+    /// <param name="data"></param>
+    /// <returns></returns>
+    Task<bool> TestOldUpdateManyAsync(string url, string data);
     
     /// <summary>
     /// 更新单条数据
