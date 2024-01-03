@@ -1,8 +1,8 @@
-﻿using SimpleWebApi.Application.AppService;
-using SimpleWebApi.Application.IAppService;
+﻿namespace SimpleWebApi.Application;
 
-namespace SimpleWebApi.Application;
-
+/// <summary>
+/// DI
+/// </summary>
 public static class DependencyInjection
 {
     /// <summary>
