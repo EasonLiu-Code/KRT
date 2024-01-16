@@ -33,7 +33,7 @@ builder.Services.AddMemoryCache();
 
 builder.Services.AddScoped<ITestDbAppService, TestDbAppService>();
 builder.Services.AddScoped<ITestDbRepository, TestDbRepository>();
-
+builder.Services.AddApplication();
 #endregion
 
 
