@@ -40,6 +40,15 @@ public interface ITestDbRepository
     /// <param name="data"></param>
     /// <returns></returns>
     Task<bool> UpdateManyAsync(string url,string data);
+
+    // /// <summary>
+    // /// 单体查询
+    // /// </summary>
+    // /// <param name="param"></param>
+    // /// <typeparam name="T"></typeparam>
+    // /// <returns></returns>
+    //  Task<T> FirstOrDefaultAsync<T>(object param);
+    
    /// <summary>
    /// 
    /// </summary>
