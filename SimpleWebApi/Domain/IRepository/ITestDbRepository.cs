@@ -8,12 +8,11 @@ namespace SimpleWebApi.Domain.IRepository;
 public interface ITestDbRepository
 {
     /// <summary>
-    /// 单个查询
+    /// 单体查询
     /// </summary>
     /// <param name="id"></param>
     /// <returns></returns>
    Task<TestDb>  FirstOrDefaultAsync (int id);
-
     /// <summary>
     /// 获取符合条件的List
     /// </summary>
@@ -40,14 +39,6 @@ public interface ITestDbRepository
     /// <param name="data"></param>
     /// <returns></returns>
     Task<bool> UpdateManyAsync(string url,string data);
-
-    // /// <summary>
-    // /// 单体查询
-    // /// </summary>
-    // /// <param name="param"></param>
-    // /// <typeparam name="T"></typeparam>
-    // /// <returns></returns>
-    //  Task<T> FirstOrDefaultAsync<T>(object param);
     
    /// <summary>
    /// 
