@@ -27,7 +27,6 @@ public class DataDbContext:DbContext
         modelBuilder.Entity<TestDb>()
             .Property(e => e.IsDeleted)
             .HasDefaultValue(false);
-
     }
     
 

@@ -1,4 +1,5 @@
-﻿using SimpleWebApi.Infrastructure.Entities.Test;
+﻿using SimpleWebApi.Infrastructure.CommonDto.TestDb;
+using SimpleWebApi.Infrastructure.Entities.Test;
 
 namespace SimpleWebApi.Application.IAppService;
 
@@ -58,4 +59,11 @@ public interface ITestDbAppService
     /// <param name="url"></param>
     /// <returns></returns>
     Task<List<TestDb>> GetListInfoAsync(string url);
+
+    /// <summary>
+    /// Cursor分页
+    /// </summary>
+    /// <param name="inputDto"></param>
+    /// <returns></returns>
+    Task<TestDbPageCursorListDto> TestDbCursorPageAsync(TestDbInputDto inputDto);
 }

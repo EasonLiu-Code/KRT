@@ -1,4 +1,5 @@
-﻿using SimpleWebApi.Infrastructure.Entities.Test;
+﻿using SimpleWebApi.Infrastructure.CommonDto.TestDb;
+using SimpleWebApi.Infrastructure.Entities.Test;
 
 namespace SimpleWebApi.Domain.IRepository;
 
@@ -39,9 +40,16 @@ public interface ITestDbRepository
     /// <param name="data"></param>
     /// <returns></returns>
     Task<bool> UpdateManyAsync(string url,string data);
+
+    /// <summary>
+    /// Cursor分页
+    /// </summary>
+    /// <param name="input"></param>
+    /// <returns></returns>
+    Task<TestDbPageCursorListDto> CursorForPageAsync(TestDbInputDto input);
     
    /// <summary>
-   /// 
+   /// 实体跟踪保存
    /// </summary>
    /// <returns></returns>
     Task SaveChange();

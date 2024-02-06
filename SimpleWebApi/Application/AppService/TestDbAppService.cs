@@ -1,6 +1,7 @@
 ﻿using Microsoft.Extensions.Caching.Memory;
 using SimpleWebApi.Application.IAppService;
 using SimpleWebApi.Domain.IRepository;
+using SimpleWebApi.Infrastructure.CommonDto.TestDb;
 using SimpleWebApi.Infrastructure.Entities.Test;
 
 namespace SimpleWebApi.Application.AppService;
@@ -128,5 +129,15 @@ public class TestDbAppService:ITestDbAppService
         info.Url = url;
         await _testDbRepository.SaveChange();
         return true;
+    }
+
+    /// <summary>
+    /// Cursor分页
+    /// </summary>
+    /// <param name="inputDto"></param>
+    /// <returns></returns>
+    public async Task<TestDbPageCursorListDto> TestDbCursorPageAsync(TestDbInputDto inputDto)
+    {
+        return await _testDbRepository.CursorForPageAsync(inputDto);
     }
 }

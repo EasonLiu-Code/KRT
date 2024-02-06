@@ -1,5 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using SimpleWebApi.Domain.IRepository;
+using SimpleWebApi.Infrastructure.CommonDto;
+using SimpleWebApi.Infrastructure.CommonDto.TestDb;
 using SimpleWebApi.Infrastructure.Entities.Test;
 
 namespace SimpleWebApi.Infrastructure.Repositories;
@@ -28,11 +30,7 @@ public class TestDbRepository:ITestDbRepository
     public async Task<TestDb> FirstOrDefaultAsync(int id)
     {
         var res= await _dbContext.TestDb.FirstOrDefaultAsync(i => i.Id.Equals(id)&&!i.IsDeleted);
-        if (res is null)
-        {
-            return new TestDb();
-        }
-        return res;
+        return res ?? new TestDb();
     }
 
     /// <summary>
@@ -68,7 +66,7 @@ public class TestDbRepository:ITestDbRepository
     public async Task<bool> InsertManyAsync(List<TestDb> lstTestDb)
     {
         await _dbContext.TestDb.AddRangeAsync(lstTestDb);
-        await SaveChange();
+        await _dbContext.SaveChangesAsync();
         return true;
     }
 
@@ -84,6 +82,18 @@ public class TestDbRepository:ITestDbRepository
             .Where(a=>a.Url != null && a.Url.Equals(url))
             .ExecuteUpdateAsync(a => a.SetProperty(u => u.TestDate ,data));
         return true;
+    }
+
+    /// <summary>
+    /// 光标分页
+    /// </summary>
+    /// <returns></returns>
+    public async Task<TestDbPageCursorListDto> CursorForPageAsync(TestDbInputDto input)
+    {
+        var testDbs = await _dbContext.TestDb.Where(p => p.Id >= input.Cursor).Take(input.PageSize + 1).OrderBy(p => p.Id).ToListAsync();
+        long cursor = testDbs[^1].Id;
+        var result = new TestDbPageCursorListDto { Cursor = cursor,TestDbs = testDbs};
+        return result;
     }
 
     /// <summary>

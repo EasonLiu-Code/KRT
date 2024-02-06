@@ -1,6 +1,7 @@
 ﻿using System.Runtime.CompilerServices;
 using Microsoft.AspNetCore.Mvc;
 using SimpleWebApi.Application.IAppService;
+using SimpleWebApi.Infrastructure.CommonDto.TestDb;
 using SimpleWebApi.Infrastructure.Entities.Test;
 
 namespace SimpleWebApi.Controllers;
@@ -101,6 +102,17 @@ public class TestDbController:ControllerBase
     public async Task<bool> TestOldUpdateManyAsync(string url, string data)
     {
         return await _testDbAppService.TestOldUpdateManyAsync(url, data);
+    }
+
+    /// <summary>
+    /// Cursor分页
+    /// </summary>
+    /// <param name="inputDto"></param>
+    /// <returns></returns>
+    [HttpPost]
+    public async Task<TestDbPageCursorListDto> TestDbCursorPageAsync([FromQuery]TestDbInputDto inputDto)
+    {
+        return await _testDbAppService.TestDbCursorPageAsync(inputDto);
     }
 
 }
