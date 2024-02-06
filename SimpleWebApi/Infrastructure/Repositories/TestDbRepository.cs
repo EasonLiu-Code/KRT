@@ -88,12 +88,23 @@ public class TestDbRepository:ITestDbRepository
     /// 光标分页
     /// </summary>
     /// <returns></returns>
-    public async Task<TestDbPageCursorListDto> CursorForPageAsync(TestDbInputDto input,CancellationToken cancellationToken=default)
+    public async Task<TestDbPageCursorListDto> CursorForPageAsync(TestDbCursorPageInputDto cursorPageInput,CancellationToken cancellationToken=default)
     {
-        var testDbs = await _dbContext.TestDb.Where(p => p.Id >= input.Cursor).Take(input.PageSize + 1).OrderBy(p => p.Id).ToListAsync(cancellationToken: cancellationToken);
+        var testDbs = await _dbContext.TestDb.Where(p => p.Id >= cursorPageInput.Cursor).Take(cursorPageInput.PageSize + 1).OrderBy(p => p.Id).ToListAsync(cancellationToken: cancellationToken);
         long cursor = testDbs[^1].Id;
         var result = new TestDbPageCursorListDto { Cursor = cursor,TestDbs = testDbs};
         return result;
+    }
+
+    /// <summary>
+    /// 分页
+    /// </summary>
+    /// <returns></returns>
+    public async Task<TestDbPageListDto> GetTestDbForPageAsync(TestDbPageInputDto input,CancellationToken cancellationToken=default)
+    {
+        var testDbs = await _dbContext.TestDb.OrderBy(o => o.Id).Skip((input.Page - 1) * input.PageSize)
+            .Take(input.PageSize).ToListAsync(cancellationToken);
+        return new TestDbPageListDto { TestDbs = testDbs };
     }
 
     /// <summary>

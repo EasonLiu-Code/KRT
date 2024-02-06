@@ -63,7 +63,14 @@ public interface ITestDbAppService
     /// <summary>
     /// Cursor分页
     /// </summary>
-    /// <param name="inputDto"></param>
+    /// <param name="cursorPageInputDto"></param>
     /// <returns></returns>
-    Task<TestDbPageCursorListDto> TestDbCursorPageAsync(TestDbInputDto inputDto);
+    Task<TestDbPageCursorListDto> TestDbCursorPageAsync(TestDbCursorPageInputDto cursorPageInputDto);
+
+    /// <summary>
+    /// 分页
+    /// </summary>
+    /// <param name="input"></param>
+    /// <returns></returns>
+    Task<TestDbPageListDto> GetTestDbForPageAsync(TestDbPageInputDto input);
 }

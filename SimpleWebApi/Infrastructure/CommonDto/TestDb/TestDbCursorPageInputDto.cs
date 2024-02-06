@@ -3,7 +3,7 @@
 /// <summary>
 /// 入参Dto
 /// </summary>
-public class TestDbInputDto
+public class TestDbCursorPageInputDto
 {
     /// <summary>
     /// Cursor

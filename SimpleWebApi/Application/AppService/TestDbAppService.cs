@@ -134,10 +134,20 @@ public class TestDbAppService:ITestDbAppService
     /// <summary>
     /// Cursor分页
     /// </summary>
-    /// <param name="inputDto"></param>
+    /// <param name="cursorPageInputDto"></param>
     /// <returns></returns>
-    public async Task<TestDbPageCursorListDto> TestDbCursorPageAsync(TestDbInputDto inputDto)
+    public async Task<TestDbPageCursorListDto> TestDbCursorPageAsync(TestDbCursorPageInputDto cursorPageInputDto)
     {
-        return await _testDbRepository.CursorForPageAsync(inputDto);
+        return await _testDbRepository.CursorForPageAsync(cursorPageInputDto);
+    }
+
+    /// <summary>
+    /// 分页
+    /// </summary>
+    /// <param name="input"></param>
+    /// <returns></returns>
+    public async Task<TestDbPageListDto> GetTestDbForPageAsync(TestDbPageInputDto input)
+    {
+        return await _testDbRepository.GetTestDbForPageAsync(input);
     }
 }

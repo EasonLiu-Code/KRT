@@ -107,12 +107,24 @@ public class TestDbController:ControllerBase
     /// <summary>
     /// Cursor分页
     /// </summary>
+    /// <param name="cursorPageInputDto"></param>
+    /// <returns></returns>
+    [HttpPost]
+    public async Task<TestDbPageCursorListDto> TestDbCursorPageAsync([FromQuery]TestDbCursorPageInputDto cursorPageInputDto)
+    {
+        return await _testDbAppService.TestDbCursorPageAsync(cursorPageInputDto);
+    }
+
+
+    /// <summary>
+    /// 分页
+    /// </summary>
     /// <param name="inputDto"></param>
     /// <returns></returns>
     [HttpPost]
-    public async Task<TestDbPageCursorListDto> TestDbCursorPageAsync([FromQuery]TestDbInputDto inputDto)
+    public async Task<TestDbPageListDto> TestDbPageAsync([FromQuery]TestDbPageInputDto inputDto)
     {
-        return await _testDbAppService.TestDbCursorPageAsync(inputDto);
+        return await _testDbAppService.GetTestDbForPageAsync(inputDto);
     }
 
 }

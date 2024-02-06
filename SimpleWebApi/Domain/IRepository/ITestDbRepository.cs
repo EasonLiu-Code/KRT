@@ -44,10 +44,20 @@ public interface ITestDbRepository
     /// <summary>
     /// Cursor分页
     /// </summary>
+    /// <param name="cursorPageInput"></param>
+    /// <param name="cancellationToken"></param>
+    /// <returns></returns>
+    Task<TestDbPageCursorListDto> CursorForPageAsync(TestDbCursorPageInputDto cursorPageInput,
+     CancellationToken cancellationToken=default);
+
+    /// <summary>
+    /// 分页
+    /// </summary>
     /// <param name="input"></param>
     /// <param name="cancellationToken"></param>
     /// <returns></returns>
-    Task<TestDbPageCursorListDto> CursorForPageAsync(TestDbInputDto input,CancellationToken cancellationToken=default);
+    Task<TestDbPageListDto> GetTestDbForPageAsync(TestDbPageInputDto input,
+     CancellationToken cancellationToken = default);
     
    /// <summary>
    /// 实体跟踪保存
