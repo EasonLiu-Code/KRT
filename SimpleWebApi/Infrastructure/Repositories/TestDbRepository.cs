@@ -88,9 +88,9 @@ public class TestDbRepository:ITestDbRepository
     /// 光标分页
     /// </summary>
     /// <returns></returns>
-    public async Task<TestDbPageCursorListDto> CursorForPageAsync(TestDbInputDto input)
+    public async Task<TestDbPageCursorListDto> CursorForPageAsync(TestDbInputDto input,CancellationToken cancellationToken=default)
     {
-        var testDbs = await _dbContext.TestDb.Where(p => p.Id >= input.Cursor).Take(input.PageSize + 1).OrderBy(p => p.Id).ToListAsync();
+        var testDbs = await _dbContext.TestDb.Where(p => p.Id >= input.Cursor).Take(input.PageSize + 1).OrderBy(p => p.Id).ToListAsync(cancellationToken: cancellationToken);
         long cursor = testDbs[^1].Id;
         var result = new TestDbPageCursorListDto { Cursor = cursor,TestDbs = testDbs};
         return result;

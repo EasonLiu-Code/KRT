@@ -45,8 +45,9 @@ public interface ITestDbRepository
     /// Cursor分页
     /// </summary>
     /// <param name="input"></param>
+    /// <param name="cancellationToken"></param>
     /// <returns></returns>
-    Task<TestDbPageCursorListDto> CursorForPageAsync(TestDbInputDto input);
+    Task<TestDbPageCursorListDto> CursorForPageAsync(TestDbInputDto input,CancellationToken cancellationToken=default);
     
    /// <summary>
    /// 实体跟踪保存
