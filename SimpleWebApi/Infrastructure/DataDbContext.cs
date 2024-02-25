@@ -1,9 +1,9 @@
 using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Query.Internal;
+using SimpleWebApi.Infrastructure.Entities.AlarmManagement;
 using SimpleWebApi.Infrastructure.Entities.Test;
+using SimpleWebApi.Infrastructure.Entities.VehicleInspection;
 
 namespace SimpleWebApi.Infrastructure;
-
 /// <summary>
 /// context
 /// </summary>
@@ -27,11 +27,22 @@ public class DataDbContext:DbContext
         modelBuilder.Entity<TestDb>()
             .Property(e => e.IsDeleted)
             .HasDefaultValue(false);
+        
+        modelBuilder.Entity<VehicleInspection>()
+            .Property(e => e.IsDeleted)
+            .HasDefaultValue(false);
+        
+        modelBuilder.Entity<VehicleInspection>()
+            .Property(e => e.InspectionTime)
+            .HasDefaultValue(DateTime.Now);
     }
     
-
-    /// <summary>
-    /// 
-    /// </summary>
+    /// <summary></summary>
     public DbSet<TestDb> TestDb { get; set; }
+
+    /// <summary></summary>
+    public DbSet<VehicleInspection> VehicleInspection { get; set; }
+
+    /// <summary></summary>
+    public DbSet<AlarmManagement> AlarmManagement { get; set; }
 }
