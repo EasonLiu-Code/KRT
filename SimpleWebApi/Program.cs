@@ -30,9 +30,10 @@ builder.Services.AddDbContext<DataDbContext>(options =>
 builder.Services.AddMemoryCache();
 
 #region DenpendencyInjection
-
 builder.Services.AddScoped<ITestDbAppService, TestDbAppService>();
 builder.Services.AddScoped<ITestDbRepository, TestDbRepository>();
+builder.Services.AddScoped<IVehicleInspectionService, VehicleInspectionService>();
+builder.Services.AddScoped<IVehicleInspectionRepository, VehicleInspectionRepository>();
 builder.Services.AddApplication();
 #endregion
 

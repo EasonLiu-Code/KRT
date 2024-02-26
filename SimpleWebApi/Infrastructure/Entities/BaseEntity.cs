@@ -5,6 +5,9 @@ using Microsoft.EntityFrameworkCore;
 
 namespace SimpleWebApi.Infrastructure.Entities;
 
+/// <summary>
+/// entity基层
+/// </summary>
 public class BaseEntity
 {
     /// <summary> 主键 </summary>
