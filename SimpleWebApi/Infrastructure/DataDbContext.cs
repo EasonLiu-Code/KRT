@@ -44,5 +44,5 @@ public class DataDbContext:DbContext
     public DbSet<VehicleInspection> VehicleInspection { get; set; }
 
     /// <summary></summary>
-    public DbSet<AlarmManagement> AlarmManagement { get; set; }
+    public DbSet<AlarmManagement?> AlarmManagement { get; set; }
 }

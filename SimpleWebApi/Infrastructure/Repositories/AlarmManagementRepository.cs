@@ -1,4 +1,5 @@
-﻿using SimpleWebApi.Domain.IRepository;
+﻿using Microsoft.EntityFrameworkCore;
+using SimpleWebApi.Domain.IRepository;
 using SimpleWebApi.Infrastructure.CommonDto.AlarmManagement;
 using SimpleWebApi.Infrastructure.Entities.AlarmManagement;
 
@@ -46,4 +47,41 @@ public class AlarmManagementRepository:IAlarmManagementRepository
         await _dbContext.SaveChangesAsync();
         return true;
     }
+
+    /// <summary>
+    /// 获取报警信息
+    /// </summary>
+    /// <returns></returns>
+    public async Task<AlarmManagement?> GetAsync()
+    {
+        return await _dbContext.AlarmManagement.FirstOrDefaultAsync();
+    }
+
+    /// <summary>
+    /// 更新报警信息配置
+    /// </summary>
+    /// <returns></returns>
+    public async Task<bool> UpdateAsync(AlarmManagementDto input)
+    {
+        var alarmManagement = await _dbContext.AlarmManagement.FirstOrDefaultAsync();
+        if (alarmManagement != null)
+        {
+            alarmManagement.VinDisplayAlarm = input.VinDisplayAlarm;
+            alarmManagement.VinLineBodyAlarm = input.VinLineBodyAlarm;
+            alarmManagement.VinSoundAndLightAlarm = input.VinSoundAndLightAlarm;
+            alarmManagement.NameplateDisplayAlarm = input.NameplateDisplayAlarm;
+            alarmManagement.NameplateLineBodyAlarm = input.NameplateLineBodyAlarm;
+            alarmManagement.NameplateSoundAndLightAlarm = input.NameplateSoundAndLightAlarm;
+            alarmManagement.VehicleDisplay = input.VehicleDisplay;
+            alarmManagement.VehicleLineBody = input.VehicleLineBody;
+            alarmManagement.VehicleSoundAndLight = input.VehicleSoundAndLight;
+            alarmManagement.GuardPaneDisplayAlarm = input.GuardPaneDisplayAlarm;
+            alarmManagement.GuardPaneLineBodyAlarm = input.GuardPaneDisplayAlarm;
+            alarmManagement.GuardPanelSoundAndLightAlarm = input.GuardPaneLineBodyAlarm;
+        }
+
+        await _dbContext.SaveChangesAsync();
+        return true;
+    }
+    
 }
