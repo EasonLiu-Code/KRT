@@ -13,14 +13,13 @@ public class VehicleInspectionService:IVehicleInspectionService
     private readonly IVehicleInspectionRepository _vehicleInspectionRepository;
 
     /// <summary>
-    /// ctor
+    /// ctor构造函数
     /// </summary>
     /// <param name="vehicleInspectionRepository"></param>
     public VehicleInspectionService(IVehicleInspectionRepository vehicleInspectionRepository)
     {
         _vehicleInspectionRepository = vehicleInspectionRepository;
     }
-
     /// <summary>
     /// 录入车辆检查信息
     /// </summary>

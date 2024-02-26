@@ -16,6 +16,7 @@ public static class DependencyInjection
     /// <returns></returns>
     public static IServiceCollection AddApplication(this IServiceCollection services)
     {
+        services.AddScoped<IVehicleInspectionRepository, VehicleInspectionRepository>();
         services.AddScoped<IAlarmManagementRepository, AlarmManagementRepository>();
         return services;
     }

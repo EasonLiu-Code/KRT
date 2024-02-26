@@ -76,8 +76,8 @@ public class AlarmManagementRepository:IAlarmManagementRepository
             alarmManagement.VehicleLineBody = input.VehicleLineBody;
             alarmManagement.VehicleSoundAndLight = input.VehicleSoundAndLight;
             alarmManagement.GuardPaneDisplayAlarm = input.GuardPaneDisplayAlarm;
-            alarmManagement.GuardPaneLineBodyAlarm = input.GuardPaneDisplayAlarm;
-            alarmManagement.GuardPanelSoundAndLightAlarm = input.GuardPaneLineBodyAlarm;
+            alarmManagement.GuardPaneLineBodyAlarm = input.GuardPaneLineBodyAlarm;
+            alarmManagement.GuardPanelSoundAndLightAlarm = input.GuardPanelSoundAndLightAlarm;
         }
 
         await _dbContext.SaveChangesAsync();

@@ -15,6 +15,8 @@ public static class DependencyInjection
     /// <returns></returns>
     public static IServiceCollection AddAppServiceApplication(this IServiceCollection services)
     {
+        //瞬态，范围，单例 
+        services.AddScoped<IVehicleInspectionService, VehicleInspectionService>();
         services.AddScoped<IAlarmManagementService, AlarmManagementService>();
         return services;
     }
