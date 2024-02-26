@@ -2,6 +2,7 @@ using System.Reflection;
 using Carter;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.OpenApi.Models;
+using SimpleWebApi.Application;
 using SimpleWebApi.Application.AppService;
 using SimpleWebApi.Application.IAppService;
 using SimpleWebApi.Domain.IRepository;
@@ -35,6 +36,7 @@ builder.Services.AddScoped<ITestDbRepository, TestDbRepository>();
 builder.Services.AddScoped<IVehicleInspectionService, VehicleInspectionService>();
 builder.Services.AddScoped<IVehicleInspectionRepository, VehicleInspectionRepository>();
 builder.Services.AddApplication();
+builder.Services.AddAppServiceApplication();
 #endregion
 
 

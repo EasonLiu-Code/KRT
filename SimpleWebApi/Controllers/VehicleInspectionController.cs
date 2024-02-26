@@ -6,7 +6,7 @@ using SimpleWebApi.Infrastructure.Entities.VehicleInspection;
 namespace SimpleWebApi.Controllers;
 
 /// <summary>
-/// controller
+/// 车辆检查
 /// </summary>
 [ApiController]
 [Route("api/[controller]/[action]")]

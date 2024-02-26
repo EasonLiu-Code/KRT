@@ -1,4 +1,7 @@
 ﻿
+using SimpleWebApi.Domain.IRepository;
+using SimpleWebApi.Infrastructure.Repositories;
+
 namespace SimpleWebApi.Infrastructure;
 
 /// <summary>
@@ -13,6 +16,7 @@ public static class DependencyInjection
     /// <returns></returns>
     public static IServiceCollection AddApplication(this IServiceCollection services)
     {
+        services.AddScoped<IAlarmManagementRepository, AlarmManagementRepository>();
         return services;
     }
     

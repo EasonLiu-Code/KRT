@@ -1,4 +1,7 @@
-﻿namespace SimpleWebApi.Application;
+﻿using SimpleWebApi.Application.AppService;
+using SimpleWebApi.Application.IAppService;
+
+namespace SimpleWebApi.Application;
 
 /// <summary>
 /// DI
@@ -10,9 +13,9 @@ public static class DependencyInjection
     /// </summary>
     /// <param name="services"></param>
     /// <returns></returns>
-    public static IServiceCollection AddApplication(this IServiceCollection services)
+    public static IServiceCollection AddAppServiceApplication(this IServiceCollection services)
     {
-        
+        services.AddScoped<IAlarmManagementService, AlarmManagementService>();
         return services;
     }
 }
