@@ -9,6 +9,8 @@ using SimpleWebApi.Domain.IRepository;
 using SimpleWebApi.Infrastructure;
 using SimpleWebApi.Infrastructure.Repositories;
 
+SetThreadPool();
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
@@ -60,3 +62,15 @@ app.MapControllers();
 // 👇 find all the Carter modules and register all the APIs
 app.MapCarter();
 app.Run();
+
+
+
+static void SetThreadPool()
+{
+    ThreadPool.GetMinThreads(out var minWorkerThreads, out var minCompletionPortThreads);
+    ThreadPool.SetMinThreads(
+        minWorkerThreads < 100 ? 100 : minWorkerThreads,
+        minCompletionPortThreads < 100 ? 100 : minCompletionPortThreads);
+    ThreadPool.GetMaxThreads(out var maxWorkerThreads, out var maxCompletionPortThreads);
+    ThreadPool.SetMaxThreads(maxWorkerThreads, maxCompletionPortThreads <= 3000 ? 3000 : maxCompletionPortThreads);
+}
