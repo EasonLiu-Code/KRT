@@ -18,7 +18,6 @@ public static class DependencyInjection
     {
         services.AddScoped<IVehicleInspectionRepository, VehicleInspectionRepository>();
         services.AddScoped<IAlarmManagementRepository, AlarmManagementRepository>();
-        services.AddScoped(typeof(IRepository<>),typeof(IRepository<>));
         return services;
     }
     

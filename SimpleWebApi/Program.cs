@@ -35,6 +35,7 @@ builder.Services.AddMemoryCache();
 #region DenpendencyInjection
 builder.Services.AddScoped<ITestDbAppService, TestDbAppService>();
 builder.Services.AddScoped<ITestDbRepository, TestDbRepository>();
+builder.Services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
 builder.Services.AddApplication();
 builder.Services.AddAppServiceApplication();
 #endregion
