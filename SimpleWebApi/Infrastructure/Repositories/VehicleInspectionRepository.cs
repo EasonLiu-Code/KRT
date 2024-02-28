@@ -54,6 +54,10 @@ public class VehicleInspectionRepository:IVehicleInspectionRepository
         return res is not {Count:>0} ? new List<VehicleInspection>() : res;
     }
 
+    /// <summary>
+    /// 获取全部车辆检查信息
+    /// </summary>
+    /// <returns></returns>
     public async Task<List<VehicleInspection>> GetVehicleInspectionInfosAllAsync()
     {
         var res = await _dbContext.VehicleInspection.ToListAsync();
