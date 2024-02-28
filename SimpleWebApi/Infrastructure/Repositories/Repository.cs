@@ -39,4 +39,14 @@ public class Repository<TEntity>:IRepository<TEntity> where TEntity:class
         return await _dataDbContext.Set<TEntity>().FirstOrDefaultAsync();
 
     }
+
+    /// <summary>
+    /// FirstOrDefaultAsNoTrackAsync
+    /// </summary>
+    /// <returns></returns>
+    /// <exception cref="NotImplementedException"></exception>
+    public async Task<TEntity?> FirstOrDefaultAsNoTrackAsync()
+    {
+        return await _dataDbContext.Set<TEntity>().AsNoTracking().FirstOrDefaultAsync();
+    }
 }
