@@ -49,7 +49,7 @@ public class VehicleInspectionController:ControllerBase
     /// 获取全部车辆检查信息
     /// </summary>
     /// <returns></returns>
-    [HttpPost]
+    [HttpGet]
     public async Task<List<VehicleInspection>> GetVehicleInspectionInfosAllAsync()
     {
         return await _vehicleInspectionService.GetVehicleInspectionInfosAllAsync();
