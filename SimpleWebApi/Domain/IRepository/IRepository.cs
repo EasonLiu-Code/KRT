@@ -10,4 +10,10 @@ public interface IRepository<TEntity>
     /// </summary>
     /// <returns></returns>
     Task<List<TEntity>> GetAllAsync();
+
+    /// <summary>
+    /// FirstOrDefaultAsync
+    /// </summary>
+    /// <returns></returns>
+    Task<TEntity?> FirstOrDefaultAsync();
 }

@@ -29,4 +29,14 @@ public class Repository<TEntity>:IRepository<TEntity> where TEntity:class
     {
         return  await _dataDbContext.Set<TEntity>().ToListAsync();
     }
+
+    /// <summary>
+    /// FirstOrDefaultAsync
+    /// </summary>
+    /// <returns></returns>
+    public async Task<TEntity?> FirstOrDefaultAsync()
+    {
+        return await _dataDbContext.Set<TEntity>().FirstOrDefaultAsync();
+
+    }
 }
