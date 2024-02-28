@@ -16,4 +16,5 @@ public interface IRepository<TEntity>
     /// </summary>
     /// <returns></returns>
     Task<TEntity?> FirstOrDefaultAsync();
+    
 }
