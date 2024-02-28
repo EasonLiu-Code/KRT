@@ -53,4 +53,12 @@ public class VehicleInspectionRepository:IVehicleInspectionRepository
             Where(v => v.Vin != null && v.Vin.Equals(vin)).ToListAsync();
         return res is not {Count:>0} ? new List<VehicleInspection>() : res;
     }
+
+    public async Task<List<VehicleInspection>> GetVehicleInspectionInfosAllAsync()
+    {
+        var res = await _dbContext.VehicleInspection.ToListAsync();
+        return res is not { Count: > 0 } ? new List<VehicleInspection>() : res;
+    }
+
+
 }
