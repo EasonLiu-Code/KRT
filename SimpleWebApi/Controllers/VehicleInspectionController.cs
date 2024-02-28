@@ -35,6 +35,19 @@ public class VehicleInspectionController:ControllerBase
     }
 
     /// <summary>
+    /// 获取指定检测项目的信息
+    /// </summary>
+    /// <param name="vin"></param>
+    /// <param name="item"></param>
+    /// <returns></returns>
+    [HttpGet]
+    public async Task<List<VehicleInspectionLocationDto>> GetVehicleInspectionLocationInfosAsync(string vin,
+        string item)
+    {
+        return await _vehicleInspectionService.GetVehicleInspectionLocationInfosAsync(vin, item);
+    }
+
+    /// <summary>
     /// 录入车辆检查信息
     /// </summary>
     /// <param name="vehicleInfos"></param>
