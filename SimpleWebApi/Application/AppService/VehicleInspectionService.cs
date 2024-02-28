@@ -1,3 +1,4 @@
+using System.IO.IsolatedStorage;
 using SimpleWebApi.Application.IAppService;
 using SimpleWebApi.Domain.IRepository;
 using SimpleWebApi.Infrastructure.CommonDto.VehicleInspection;
@@ -38,6 +39,28 @@ public class VehicleInspectionService:IVehicleInspectionService
     public async Task<List<VehicleInspection>> GetVehicleInspectionInfosByVinAsync(string vin)
     {
         return await _vehicleInspectionRepository.GetVehicleInspectionInfosByVinAsync(vin);
+    }
+
+    /// <summary>
+    /// 获取指定检测项目数据列表
+    /// </summary>
+    /// <param name="vin"></param>
+    /// <param name="item"></param>
+    /// <returns></returns>
+    public async Task<List<VehicleInspectionLocationDto>> GetVehicleInspectionLocationInfosAsync(string vin,
+        string item)
+    {
+        var infos = await _vehicleInspectionRepository.GetVehicleInspectionInfosByVinAsync(vin);
+        var vehicleInspections = infos.Where(a =>
+                                    a.InspectionItem != null && a.InspectionItem.Equals(item)).ToList();
+        var result = new List<VehicleInspectionLocationDto>();
+        vehicleInspections.ForEach(a=>result.Add(new VehicleInspectionLocationDto
+        {
+            InspectionLocation = a.InspectionLocation,
+            InspectionStatus = a.InspectionStatus,
+            ImageUrl = a.ImageUrl
+        }));
+        return result;
     }
 
     /// <summary>

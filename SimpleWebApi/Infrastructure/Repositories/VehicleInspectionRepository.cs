@@ -33,6 +33,7 @@ public class VehicleInspectionRepository:IVehicleInspectionRepository
         {
             Vin = a.Vin,
             InspectionItem = a.InspectionItem,
+            InspectionLocation = a.InspectionLocation,
             InspectionTime = DateTime.Now,
             InspectionStatus = a.InspectionStatus,
             ImageUrl = a.ImageUrl

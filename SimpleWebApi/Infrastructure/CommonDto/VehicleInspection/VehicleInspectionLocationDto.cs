@@ -1,20 +1,10 @@
 namespace SimpleWebApi.Infrastructure.CommonDto.VehicleInspection;
 
 /// <summary>
-/// 车辆检查Dto
+/// VehicleInspectionLocationDto
 /// </summary>
-public class VehicleInspectionDto
+public class VehicleInspectionLocationDto
 {
-    /// <summary>
-    /// vin
-    /// </summary>
-    public string? Vin { get; set; }
-    
-    /// <summary>
-    /// 检测项目
-    /// </summary>
-    public string? InspectionItem { get; set; }
-
     /// <summary>
     /// 检测位置
     /// </summary>

@@ -23,6 +23,15 @@ public interface IVehicleInspectionService
     Task<List<VehicleInspection>> GetVehicleInspectionInfosByVinAsync(string vin);
 
     /// <summary>
+    /// 获取车辆检测位置信息
+    /// </summary>
+    /// <param name="vin"></param>
+    /// <param name="item"></param>
+    /// <returns></returns>
+    Task<List<VehicleInspectionLocationDto>> GetVehicleInspectionLocationInfosAsync(string vin,
+        string item);
+
+    /// <summary>
     /// 获取全部车辆检查信息
     /// </summary>
     /// <returns></returns>
