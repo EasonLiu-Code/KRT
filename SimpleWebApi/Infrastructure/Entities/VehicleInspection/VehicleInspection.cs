@@ -21,7 +21,11 @@ public  class VehicleInspection:BaseEntity
     /// </summary>
     [MaxLength(255)]
     public string? InspectionItem { get; set; }
-    
+
+    /// <summary>
+    /// 检测位置
+    /// </summary>
+    public string? InspectionLocation { get; set; }
     /// <summary>
     /// 检测时间
     /// </summary>
