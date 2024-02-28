@@ -39,4 +39,14 @@ public class VehicleInspectionService:IVehicleInspectionService
     {
         return await _vehicleInspectionRepository.GetVehicleInspectionInfosByVinAsync(vin);
     }
+
+    /// <summary>
+    /// 获取全部车辆检查信息
+    /// </summary>
+    /// <returns></returns>
+    public async Task<List<VehicleInspection>> GetVehicleInspectionInfosAllAsync()
+    {
+        return await _vehicleInspectionRepository.GetVehicleInspectionInfosAllAsync();
+    }
+
 }

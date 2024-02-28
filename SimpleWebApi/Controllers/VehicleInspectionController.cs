@@ -45,4 +45,13 @@ public class VehicleInspectionController:ControllerBase
         return await _vehicleInspectionService.InsertVehicleInspectionInfosAsync(vehicleInfos);
     }
 
+    /// <summary>
+    /// 获取全部车辆检查信息
+    /// </summary>
+    /// <returns></returns>
+    [HttpPost]
+    public async Task<List<VehicleInspection>> GetVehicleInspectionInfosAllAsync()
+    {
+        return await _vehicleInspectionService.GetVehicleInspectionInfosAllAsync();
+    }
 }
