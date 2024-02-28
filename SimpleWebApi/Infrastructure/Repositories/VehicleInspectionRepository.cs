@@ -12,6 +12,7 @@ public class VehicleInspectionRepository:IVehicleInspectionRepository
 {
     private readonly DataDbContext _dbContext;
 
+
     /// <summary>
     /// ctor
     /// </summary>
