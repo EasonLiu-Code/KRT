@@ -51,15 +51,15 @@ public class VehicleInspectionService:IVehicleInspectionService
         string item)
     {
         var infos = await _vehicleInspectionRepository.GetVehicleInspectionInfosByVinAsync(vin);
-        var vehicleInspections = infos.Where(a =>
-                                    a.InspectionItem != null && a.InspectionItem.Equals(item)).ToList();
-        var result = new List<VehicleInspectionLocationDto>();
-        vehicleInspections.ForEach(a=>result.Add(new VehicleInspectionLocationDto
-        {
-            InspectionLocation = a.InspectionLocation,
-            InspectionStatus = a.InspectionStatus,
-            ImageUrl = a.ImageUrl
-        }));
+        var result = infos
+            .Where(a => a.InspectionItem != null && a.InspectionItem.Equals(item))
+            .Select(a => new VehicleInspectionLocationDto
+            {
+                InspectionLocation = a.InspectionLocation,
+                InspectionStatus = a.InspectionStatus,
+                ImageUrl = a.ImageUrl
+            })
+            .ToList();
         return result;
     }
 
