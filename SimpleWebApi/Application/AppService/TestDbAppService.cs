@@ -13,16 +13,20 @@ public class TestDbAppService:ITestDbAppService
 {
     private readonly ITestDbRepository _testDbRepository;
     private readonly IMemoryCache _cache;
+    private readonly IRepository<TestDb> _repository;
 
     /// <summary>
     /// ctor
     /// </summary>
     /// <param name="testDbRepository"></param>
     /// <param name="cache"></param>
-    public TestDbAppService(ITestDbRepository testDbRepository, IMemoryCache cache)
+    /// <param name="repository"></param>
+    public TestDbAppService(ITestDbRepository testDbRepository, IMemoryCache cache, 
+        IRepository<TestDb> repository)
     {
         _testDbRepository = testDbRepository;
         _cache = cache;
+        _repository = repository;
     }
 
     /// <summary>
