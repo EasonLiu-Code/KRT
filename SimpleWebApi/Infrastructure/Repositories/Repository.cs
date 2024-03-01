@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using SimpleWebApi.Domain.IRepository;
+using SimpleWebApi.Infrastructure.Entities;
 
 namespace SimpleWebApi.Infrastructure.Repositories;
 
@@ -7,10 +8,10 @@ namespace SimpleWebApi.Infrastructure.Repositories;
 /// BaseRepository
 /// </summary>
 /// <typeparam name="TEntity"></typeparam>
-public class Repository<TEntity>:IRepository<TEntity> where TEntity:class
+public class Repository<TEntity>:IRepository<TEntity> where TEntity:BaseEntity
 {
     /// <summary></summary>
-    private readonly DataDbContext _dataDbContext;
+    protected readonly DataDbContext DataDbContext;
 
     /// <summary>
     /// ctor
@@ -18,7 +19,7 @@ public class Repository<TEntity>:IRepository<TEntity> where TEntity:class
     /// <param name="dataDbContext"></param>
     protected Repository(DataDbContext dataDbContext)
     {
-        _dataDbContext = dataDbContext;
+        DataDbContext = dataDbContext;
     }
 
     /// <summary>
@@ -27,7 +28,7 @@ public class Repository<TEntity>:IRepository<TEntity> where TEntity:class
     /// <returns></returns>
     public async Task<List<TEntity>> GetAllAsync()
     {
-        return  await _dataDbContext.Set<TEntity>().ToListAsync();
+        return  await DataDbContext.Set<TEntity>().ToListAsync();
     }
 
     /// <summary>
@@ -36,7 +37,7 @@ public class Repository<TEntity>:IRepository<TEntity> where TEntity:class
     /// <returns></returns>
     public async Task<TEntity?> FirstOrDefaultAsync()
     {
-        return await _dataDbContext.Set<TEntity>().FirstOrDefaultAsync();
+        return await DataDbContext.Set<TEntity>().FirstOrDefaultAsync();
 
     }
 
@@ -47,6 +48,6 @@ public class Repository<TEntity>:IRepository<TEntity> where TEntity:class
     /// <exception cref="NotImplementedException"></exception>
     public async Task<TEntity?> FirstOrDefaultAsNoTrackAsync()
     {
-        return await _dataDbContext.Set<TEntity>().AsNoTracking().FirstOrDefaultAsync();
+        return await DataDbContext.Set<TEntity>().AsNoTracking().FirstOrDefaultAsync();
     }
 }
