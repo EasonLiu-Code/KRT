@@ -67,4 +67,15 @@ public class VehicleInspectionController:ControllerBase
     {
         return await _vehicleInspectionService.GetVehicleInspectionInfosAllAsync();
     }
+
+    /// <summary>
+    /// 通过日期获取车辆检查信息
+    /// </summary>
+    /// <param name="date"></param>
+    /// <returns></returns>
+    [HttpPost]
+    public async Task<List<VehicleInspection>> GetVehicleInspectionInfosByDateAsync(DateTime date)
+    {
+        return await _vehicleInspectionService.GetVehicleInspectionInfosByDateAsync(date);
+    }
 }

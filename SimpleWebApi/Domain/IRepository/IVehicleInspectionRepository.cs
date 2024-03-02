@@ -27,4 +27,11 @@ public interface IVehicleInspectionRepository
     /// </summary>
     /// <returns></returns>
     Task<List<VehicleInspection>> GetVehicleInspectionInfosAllAsync();
+
+    /// <summary>
+    /// 通过日期获取车辆检查信息
+    /// </summary>
+    /// <param name="date"></param>
+    /// <returns></returns>
+    Task<List<VehicleInspection>> GetVehicleInspectionInfosByDateAsync(DateTime date);
 }
