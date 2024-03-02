@@ -1,6 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using SimpleWebApi.Domain.IRepository;
-using SimpleWebApi.Infrastructure.CommonDto;
 using SimpleWebApi.Infrastructure.CommonDto.TestDb;
 using SimpleWebApi.Infrastructure.Entities.Test;
 
@@ -9,17 +8,14 @@ namespace SimpleWebApi.Infrastructure.Repositories;
 /// <summary>
 /// repo
 /// </summary>
-public class TestDbRepository:ITestDbRepository
+public class TestDbRepository:Repository<TestDb>,ITestDbRepository
 {
-    private readonly DataDbContext _dbContext;
-
     /// <summary>
     /// ctor
     /// </summary>
     /// <param name="dbContext"></param>
-    public TestDbRepository(DataDbContext dbContext)
+    public TestDbRepository(DataDbContext dbContext):base(dbContext)
     {
-        _dbContext = dbContext;
     }
     
     /// <summary>
@@ -29,7 +25,7 @@ public class TestDbRepository:ITestDbRepository
     /// <returns></returns>
     public async Task<TestDb> FirstOrDefaultAsync(int id)
     {
-        var res= await _dbContext.TestDb.FirstOrDefaultAsync(i => i.Id.Equals(id)&&!i.IsDeleted);
+        var res= await DataDbContext.TestDb.FirstOrDefaultAsync(i => i.Id.Equals(id)&&!i.IsDeleted);
         return res ?? new TestDb();
     }
 
@@ -40,9 +36,9 @@ public class TestDbRepository:ITestDbRepository
     /// <returns></returns>
     public async Task<List<TestDb>> GetListAsync(string url)
     {
-       var res= await _dbContext.TestDb.Where(u => u.Url != null 
-                                                   && u.Url.Equals(url) 
-                                                   && !u.IsDeleted).ToListAsync();
+       var res= await DataDbContext.TestDb.Where(u => u.Url != null 
+                                                      && u.Url.Equals(url) 
+                                                      && !u.IsDeleted).ToListAsync();
        return res is not {Count:>0} ? new List<TestDb>() : res;
     }
 
@@ -53,8 +49,8 @@ public class TestDbRepository:ITestDbRepository
     /// <returns></returns>
     public async Task<bool> InsertAsync(TestDb testDb)
     {
-        await _dbContext.TestDb.AddAsync(testDb);
-        await _dbContext.SaveChangesAsync();
+        await DataDbContext.TestDb.AddAsync(testDb);
+        await DataDbContext.SaveChangesAsync();
         return true;
     }
     
@@ -65,8 +61,8 @@ public class TestDbRepository:ITestDbRepository
     /// <returns></returns>
     public async Task<bool> InsertManyAsync(List<TestDb> lstTestDb)
     {
-        await _dbContext.TestDb.AddRangeAsync(lstTestDb);
-        await _dbContext.SaveChangesAsync();
+        await DataDbContext.TestDb.AddRangeAsync(lstTestDb);
+        await DataDbContext.SaveChangesAsync();
         return true;
     }
 
@@ -78,7 +74,7 @@ public class TestDbRepository:ITestDbRepository
     /// <returns></returns>
     public async Task<bool> UpdateManyAsync(string url,string data)
     {
-        await _dbContext.TestDb
+        await DataDbContext.TestDb
             .Where(a=>a.Url != null && a.Url.Equals(url))
             .ExecuteUpdateAsync(a => a.SetProperty(u => u.TestDate ,data));
         return true;
@@ -90,7 +86,7 @@ public class TestDbRepository:ITestDbRepository
     /// <returns></returns>
     public async Task<TestDbPageCursorListDto> CursorForPageAsync(TestDbCursorPageInputDto cursorPageInput,CancellationToken cancellationToken=default)
     {
-        var testDbs = await _dbContext.TestDb.Where(p => p.Id >= cursorPageInput.Cursor).Take(cursorPageInput.PageSize + 1).OrderBy(p => p.Id).ToListAsync(cancellationToken: cancellationToken);
+        var testDbs = await DataDbContext.TestDb.Where(p => p.Id >= cursorPageInput.Cursor).Take(cursorPageInput.PageSize + 1).OrderBy(p => p.Id).ToListAsync(cancellationToken: cancellationToken);
         long cursor = testDbs[^1].Id;
         var result = new TestDbPageCursorListDto { Cursor = cursor,TestDbs = testDbs};
         return result;
@@ -102,7 +98,7 @@ public class TestDbRepository:ITestDbRepository
     /// <returns></returns>
     public async Task<TestDbPageListDto> GetTestDbForPageAsync(TestDbPageInputDto input,CancellationToken cancellationToken=default)
     {
-        var testDbs = await _dbContext.TestDb.OrderBy(o => o.Id).Skip((input.Page - 1) * input.PageSize)
+        var testDbs = await DataDbContext.TestDb.OrderBy(o => o.Id).Skip((input.Page - 1) * input.PageSize)
             .Take(input.PageSize).ToListAsync(cancellationToken);
         return new TestDbPageListDto { TestDbs = testDbs };
     }
@@ -112,6 +108,6 @@ public class TestDbRepository:ITestDbRepository
     /// </summary>
     public async Task SaveChange()
     {
-        await _dbContext.SaveChangesAsync();
+        await DataDbContext.SaveChangesAsync();
     }
 }
