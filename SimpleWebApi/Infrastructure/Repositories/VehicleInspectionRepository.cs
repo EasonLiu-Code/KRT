@@ -72,9 +72,13 @@ public class VehicleInspectionRepository:IVehicleInspectionRepository
     /// <exception cref="NotImplementedException"></exception>
     public async Task<List<VehicleInspection>> GetVehicleInspectionInfosByDateAsync(DateTime date)
     {
-        var res =  await _dbContext.VehicleInspection
-            .Where(insp => EF.Functions.DateDiffDay(insp.InspectionTime, date.Date) == 0) 
+        var res = await _dbContext.VehicleInspection
+            .Where(insp => insp.InspectionTime.Date == date.Date)
             .ToListAsync();
+
         return res is not { Count: > 0 } ? new List<VehicleInspection>() : res;
     }
+
+
+
 }
