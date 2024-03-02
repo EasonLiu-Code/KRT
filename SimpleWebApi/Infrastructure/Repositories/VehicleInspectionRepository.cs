@@ -28,8 +28,7 @@ public class VehicleInspectionRepository:IVehicleInspectionRepository
     /// <returns></returns>
     public async Task<bool> InsertDataAsync(List<VehicleInspectionDto> vehicleInfos)
     {
-        var vehicleInspectionInfos = new List<VehicleInspection>();
-        vehicleInfos.ForEach(a=>vehicleInspectionInfos.Add(new VehicleInspection
+        var vehicleInspectionInfos = vehicleInfos.Select(a => new VehicleInspection
         {
             Vin = a.Vin,
             InspectionItem = a.InspectionItem,
@@ -37,7 +36,7 @@ public class VehicleInspectionRepository:IVehicleInspectionRepository
             InspectionTime = DateTime.Now,
             InspectionStatus = a.InspectionStatus,
             ImageUrl = a.ImageUrl
-        }));
+        }).ToList();
         await _dbContext.VehicleInspection.AddRangeAsync(vehicleInspectionInfos);
         await _dbContext.SaveChangesAsync();
         return true;
