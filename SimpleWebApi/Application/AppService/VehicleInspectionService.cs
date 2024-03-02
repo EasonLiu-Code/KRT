@@ -72,4 +72,14 @@ public class VehicleInspectionService:IVehicleInspectionService
         return await _vehicleInspectionRepository.GetVehicleInspectionInfosAllAsync();
     }
 
+    /// <summary>
+    /// 通过日期获取车辆检查信息
+    /// </summary>
+    /// <param name="date"></param>
+    /// <returns></returns>
+    public async Task<List<VehicleInspection>> GetVehicleInspectionInfosByDateAsync(DateTime date)
+    {
+        return await _vehicleInspectionRepository.GetVehicleInspectionInfosByDateAsync(date);
+    }
+
 }
