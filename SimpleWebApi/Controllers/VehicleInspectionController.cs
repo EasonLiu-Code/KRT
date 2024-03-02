@@ -73,7 +73,7 @@ public class VehicleInspectionController:ControllerBase
     /// </summary>
     /// <param name="date"></param>
     /// <returns></returns>
-    [HttpPost]
+    [HttpGet]
     public async Task<List<VehicleInspection>> GetVehicleInspectionInfosByDateAsync(DateTime date)
     {
         return await _vehicleInspectionService.GetVehicleInspectionInfosByDateAsync(date);
