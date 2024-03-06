@@ -8,6 +8,7 @@ using SimpleWebApi.Application.IAppService;
 using SimpleWebApi.Domain.IRepository;
 using SimpleWebApi.Infrastructure;
 using SimpleWebApi.Infrastructure.Repositories;
+using SimpleWebApi.Migrations;
 
 SetThreadPool();
 
@@ -51,6 +52,8 @@ if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
     app.UseSwaggerUI();
+    //自动迁移
+    //app.ApplyMigrations();
 }
 
 app.UseHttpsRedirection();
