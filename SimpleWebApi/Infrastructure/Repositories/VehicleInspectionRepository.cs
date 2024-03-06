@@ -78,7 +78,26 @@ public class VehicleInspectionRepository:IVehicleInspectionRepository
 
         return res is not { Count: > 0 } ? new List<VehicleInspection>() : res;
     }
-
-
+    
+    /// <summary>
+    /// 通过检测项目获取最新检测内容
+    /// </summary>
+    /// <param name="InspectionItem"></param>
+    /// <returns></returns>
+    public async Task<List<VehicleInspection>> GetNewVehicleInspectionInfosByItemAsync(string InspectionItem)
+    {
+        var latestInspection = _dbContext.VehicleInspection
+                                    .Where(v => v.InspectionItem == InspectionItem)
+                                    .OrderByDescending(v => v.InspectionTime)
+                                    .FirstOrDefault();
+        List<VehicleInspection> res = new List<VehicleInspection>();
+        if (latestInspection != null)
+        {
+            res = await _dbContext.VehicleInspection
+                                     .Where(v => v.Vin != null && v.Vin.Equals(latestInspection.Vin) && v.InspectionItem == latestInspection.InspectionItem)
+                                     .ToListAsync();
+        }
+        return res;
+    }
 
 }
