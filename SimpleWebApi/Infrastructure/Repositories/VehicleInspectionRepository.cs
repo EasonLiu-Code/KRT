@@ -64,5 +64,21 @@ public class VehicleInspectionRepository:IVehicleInspectionRepository
         return res is not { Count: > 0 } ? new List<VehicleInspection>() : res;
     }
 
+    /// <summary>
+    /// 通过日期获取车辆检查信息
+    /// </summary>
+    /// <param name="date"></param>
+    /// <returns></returns>
+    /// <exception cref="NotImplementedException"></exception>
+    public async Task<List<VehicleInspection>> GetVehicleInspectionInfosByDateAsync(DateTime date)
+    {
+        var res = await _dbContext.VehicleInspection
+            .Where(insp => insp.InspectionTime.Date == date.Date)
+            .ToListAsync();
+
+        return res is not { Count: > 0 } ? new List<VehicleInspection>() : res;
+    }
+
+
 
 }
